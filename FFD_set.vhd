@@ -17,7 +17,7 @@ architecture behavioral of FFD_set is
 	signal q_s	: std_logic;
 
 begin
-	FFD_proc	: process(reset, clock)
+	FFD_proc	: process(set, clock)
 	begin
 		if (set = '1') then
 			q_s	<= '1';
