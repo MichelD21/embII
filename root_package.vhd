@@ -37,4 +37,6 @@ package root_package is
 			B		: in std_logic_vector(15 downto 0);
 			AltB	: out std_logic
 		);
+		
+end root_package;
 	
