@@ -32,7 +32,37 @@ package root_package is
 			q		: out std_logic_vector(15 downto 0)
 		);
 	end component;
-
+    
+    component reg_square is
+    	port (
+			d		: in std_logic_vector(15 downto 0);
+			reset	: in std_logic;
+			enable	: in std_logic;
+			clock	: in std_logic;
+			q		: out std_logic_vector(15 downto 0)
+		);    
+    end component;
+    
+    component reg_root is
+        port (
+                d		: in std_logic_vector(7 downto 0);
+                reset	: in std_logic;
+                enable	: in std_logic;
+                clock	: in std_logic;
+                q		: out std_logic_vector(7 downto 0)
+        );
+    end component;
+    
+    component reg_drt is
+        port (
+                d		: in std_logic_vector(7 downto 0);
+                reset	: in std_logic;
+                enable	: in std_logic;
+                clock	: in std_logic;
+                q		: out std_logic_vector(7 downto 0)
+        );
+    end component;
+    
 	component comp is
 		port (
 			A		: in std_logic_vector(15 downto 0);
@@ -40,6 +70,8 @@ package root_package is
 			AltB	: out std_logic
 		);
 	end component;
+    
+    
 		
 end root_package;
 	
