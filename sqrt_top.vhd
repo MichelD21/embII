@@ -9,7 +9,7 @@ entity sqrt_top is
 		reset			: in std_logic;
 		input			: in std_logic_vector(15 downto 0);
 		ready			: out std_logic;
-		root			: out std_logic_vector(7 downto 0);
+		root			: out std_logic_vector(7 downto 0)
 		);
 end sqrt_top;
 

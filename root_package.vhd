@@ -103,7 +103,7 @@ package root_package is
 			reset			: in std_logic;
 			diff			: in std_logic;
 			regsen_ready	: out std_logic;
-			inputen_reset	: out std_logic;
+			inputen_reset	: out std_logic
 		);
 	end component;	
 	

@@ -5,12 +5,12 @@ library IEEE;
 entity sqrt_ctrlpath is
 
 	port (
-		clock			: in std_logic;
-		reset			: in std_logic;
-		diff			: in std_logic;
-		regsen_ready	: out std_logic;
-		inputen_reset	: out std_logic;
-		);
+        clock			: in std_logic;
+        reset			: in std_logic;
+        diff			: in std_logic;
+        regsen_ready	: out std_logic;
+        inputen_reset	: out std_logic
+    );
 end sqrt_ctrlpath;
 
 architecture Structure of sqrt_ctrlpath is
@@ -23,7 +23,7 @@ architecture Structure of sqrt_ctrlpath is
 		process(clock)
 			begin
 			
-				if rising_edge(clk) then
+				if rising_edge(clock) then
 					case currentState is
 					
 						when IDLE =>
