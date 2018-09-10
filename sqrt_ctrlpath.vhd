@@ -1,6 +1,8 @@
-library IEEE;
-	use IEEE.STD_LOGIC_1164.ALL;
+library ieee;
+    use ieee.std_logic_1164.all;
 	use work.root_package.all;
+	use work.Add1Rip_package.all;
+	use work.Adder_package.all;
 
 entity sqrt_ctrlpath is
 

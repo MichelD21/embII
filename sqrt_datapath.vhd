@@ -1,6 +1,8 @@
 library ieee;
     use ieee.std_logic_1164.all;
 	use work.root_package.all;
+	use work.Add1Rip_package.all;
+	use work.Adder_package.all;
     
 entity sqrt_datapath is
     port(
@@ -32,7 +34,7 @@ begin
     input_register: entity work.reg_input
         port map(
 			d		=> input,
-			--reset	=>                         -- missing
+			reset	=> '0',
 			enable	=> inputen_reset,
 			clock   => clock,
 			q		=> input_reg_q

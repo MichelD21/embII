@@ -15,7 +15,10 @@ end reg_drt;
 
 architecture structural of reg_drt is
 
-	component FFD_reset is
+	signal d_s		: std_logic_vector(7 downto 0);
+	signal q_s		: std_logic_vector(7 downto 0);
+
+	component FFD_rst is
 		port (
 			d		: in std_logic;
 			reset	: in std_logic;
@@ -28,7 +31,7 @@ architecture structural of reg_drt is
     component FFD_set is
 		port (
 			d		: in std_logic;
-			set	: in std_logic;
+			set		: in std_logic;
 			enable	: in std_logic;
 			clock	: in std_logic;
 			q		: out std_logic
@@ -38,34 +41,37 @@ architecture structural of reg_drt is
 begin
 	-- from bits 2 to 7
 	reg_inst: for i in 2 to 7 generate
-		ffd_inst: FFD_reset
+		ffd_inst: FFD_rst
 			port map(
-				d		=> d(i),
+				d		=> d_s(i),
 				reset	=> reset,
 				enable	=> enable,
 				clock	=> clock,
-				q		=> q(i)
+				q		=> q_s(i)
 				);
 	end generate;
     
     -- bit 1
     bit_1: FFD_set
         port map(
-            d		=> d(1),
+            d		=> d_s(1),
             set	    => reset,
             enable	=> enable,
             clock	=> clock,
-            q		=> q(1)
+            q		=> q_s(1)
             ); 
           
     -- bit 0
-    bit_0: FFD_reset
+    bit_0: FFD_rst
         port map(
-            d		=> d(0),
+            d		=> d_s(0),
             reset	=> reset,
             enable	=> enable,
             clock	=> clock,
-            q		=> q(0)
+            q		=> q_s(0)
             );
+			
+	q <= q_s;
+	
 end structural;
 	

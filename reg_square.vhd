@@ -15,7 +15,7 @@ end reg_square;
 
 architecture structural of reg_square is
 
-	component FFD_reset is
+	component FFD_rst is
 		port (
 			d		: in std_logic;
 			reset	: in std_logic;
@@ -38,7 +38,7 @@ architecture structural of reg_square is
 begin
 	-- from bits 3 to 15
 	reg_inst: for i in 3 to 15 generate
-		ffd_inst: FFD_reset
+		ffd_inst: FFD_rst
 			port map(
 				d		=> d(i),
 				reset	=> reset,
@@ -59,7 +59,7 @@ begin
             ); 
           
     -- bit 1
-    bit_1: FFD_reset
+    bit_1: FFD_rst
         port map(
             d		=> d(1),
             reset	=> reset,
@@ -69,7 +69,7 @@ begin
             );
             
     -- bit 0
-    bit_0: FFD_reset
+    bit_0: FFD_rst
         port map(
             d		=> d(0),
             reset	=> reset,

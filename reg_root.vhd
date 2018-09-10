@@ -14,7 +14,7 @@ end reg_root;
 
 architecture structural of reg_root is
 
-	component FFD_reset is
+	component FFD_rst is
 		port (
 			d		: in std_logic;
 			reset	: in std_logic;
@@ -27,7 +27,7 @@ architecture structural of reg_root is
 begin
 	
 	reg_inst: for i in 0 to 7 generate
-		ffd_inst: FFD_reset
+		ffd_inst: FFD_rst
 			port map(
 				d		=> d(i),
 				reset	=> reset,
