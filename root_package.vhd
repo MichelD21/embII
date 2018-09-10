@@ -78,6 +78,13 @@ package root_package is
         );
     end component;
     
+    component or_1bit is
+        port (
+            inp1	    : in std_logic;
+            inp2	    : in std_logic;
+            outp	    : out std_logic
+        );
+    end component;
 		
 end root_package;
 	

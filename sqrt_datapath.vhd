@@ -26,6 +26,7 @@ architecture structural of sqrt_datapath is
     signal incremented_drt      : std_logic_vector(7 downto 0);
     
     signal shifted_drt          : std_logic_vector(15 downto 0);
+    signal or_out               : std_logic;
     
 begin
     input_register: entity work.reg_input
@@ -101,5 +102,15 @@ begin
 			B		=> square_sum_res,
 			AltB	=> comp_out
 		);
-
+    
+    or_1b : entity work.or_1bit
+        port map(
+            inp1    => square_sum_cout,
+            inp2    => comp_out,
+            outp    => or_out
+        );
+        
+    data_diff   <= or_out;
+    root        <= root_reg_q;
+    
 end structural;

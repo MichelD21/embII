@@ -6,7 +6,7 @@ library ieee;
 entity left_log_shift is
 	port (
         inp_8bits	    : in std_logic_vector(7 downto 0);
-        out_16bits	: out std_logic_vector(15 downto 0)
+        out_16bits	    : out std_logic_vector(15 downto 0)
 	);
 end left_log_shift;
 
