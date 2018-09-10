@@ -26,7 +26,7 @@ package root_package is
 	component reg_input is
 		port (
 			d		: in std_logic_vector(15 downto 0);
-			reset	: in std_logic;
+			--reset	: in std_logic;
 			enable	: in std_logic;
 			clock	: in std_logic;
 			q		: out std_logic_vector(15 downto 0)
@@ -71,6 +71,12 @@ package root_package is
 		);
 	end component;
     
+    component left_log_shift is
+        port (
+            inp_8bits	    : in std_logic_vector(7 downto 0);
+            out_16bits	    : out std_logic_vector(15 downto 0)
+        );
+    end component;
     
 		
 end root_package;

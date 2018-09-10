@@ -5,7 +5,7 @@ library ieee;
 entity reg_input is
 	port (
 			d		: in std_logic_vector(15 downto 0);
-			reset	: in std_logic;
+			--reset	: in std_logic;
 			enable	: in std_logic;
 			clock	: in std_logic;
 			q		: out std_logic_vector(15 downto 0)
@@ -17,7 +17,7 @@ architecture structural of reg_input is
 	component FFD_reset is
 		port (
 			d		: in std_logic;
-			reset	: in std_logic;
+			--reset	: in std_logic;
 			enable	: in std_logic;
 			clock	: in std_logic;
 			q		: out std_logic
@@ -30,7 +30,7 @@ begin
 		ffd_inst: FFD_reset
 			port map(
 				d		=> d(i),
-				reset	=> reset,
+				--reset	=> reset,
 				enable	=> enable,
 				clock	=> clock,
 				q		=> q(i)

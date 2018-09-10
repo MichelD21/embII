@@ -25,41 +25,43 @@ architecture structural of sqrt_datapath is
     signal drt_reg_q            : std_logic_vector(7 downto 0);
     signal incremented_drt      : std_logic_vector(7 downto 0);
     
+    signal shifted_drt          : std_logic_vector(15 downto 0);
+    
 begin
     input_register: entity work.reg_input
         port map(
-			d		=> input;
-			reset	=> ;                        -- missing
-			enable	=> inputen_reset;
-			clock   => clock;
+			d		=> input,
+			--reset	=>                         -- missing
+			enable	=> inputen_reset,
+			clock   => clock,
 			q		=> input_reg_q
 		);
         
     
     square_register: entity work.reg_square
         port map(
-			d		=> square_sum_res
-			reset	=> inputen_reset;
-			enable	=> regsen_ready;
-			clock	=> clock;
+			d		=> square_sum_res,
+			reset	=> inputen_reset,
+			enable	=> regsen_ready,
+			clock	=> clock,
 			q		=> square_reg_q
 		); 
     
     root_register: entity work.reg_root
         port map(
-            d		=> drt_reg_q;
-            reset	=> inputen_reset;
-            enable	=> regsen_ready;
-            clock	=> clock;
+            d		=> drt_reg_q,
+            reset	=> inputen_reset,
+            enable	=> regsen_ready,
+            clock	=> clock,
             q		=> root_reg_q
         );
     
     drt_register: entity work.reg_drt
         port map(
-            d		=> incremented_drt;
-            reset	=> inputen_reset;
-            enable	=> regsen_ready;
-            clock	=> clock;
+            d		=> incremented_drt,
+            reset	=> inputen_reset,
+            enable	=> regsen_ready,
+            clock	=> clock,
             q		=> drt_reg_q
         );
     
@@ -68,30 +70,36 @@ begin
             ADDER_WIDTH => 8
         )
         port map(
-            input0    => 1;
-            input1    => drt_reg_q;
-            carry_in  => 0;
-            result    => incremented_drt;	
-            carry_out =>                        -- missing
+            input0    => x"01",
+            input1    => drt_reg_q,
+            carry_in  => '0',
+            result    => incremented_drt,	
+            carry_out => open                       -- missing
         );
     
+    shifter: entity work.left_log_shift
+        port map(
+            inp_8bits   => drt_reg_q,
+            out_16bits  => shifted_drt
+        );
+        
     square_adder: entity work.Adder
         generic map(
             ADDER_WIDTH => 16
         )
         port map(
-            input0    => SHIFTED DRT ROOT;      -- missing
-            input1    => square_reg_q;
-            carry_in  => 1;
-            result    => square_sum_res;
+            input0    => shifted_drt,
+            input1    => square_reg_q,
+            carry_in  => '1',
+            result    => square_sum_res,
             carry_out => square_sum_cout
         );
     
-    comparator: entity work.comp_out
+    comparator: entity work.comp
         port map(
-			A		=> input_reg_q;
-			B		=> square_sum_res;
-			AltB	=>  comp_out
+			A		=> input_reg_q,
+			B		=> square_sum_res,
+			AltB	=> comp_out
 		);
 
 end structural;
