@@ -85,6 +85,27 @@ package root_package is
             outp	    : out std_logic
         );
     end component;
-		
+	
+	component sqrt_datapath is
+		port(
+			input           : in std_logic_vector(15 downto 0);
+			clock           : in std_logic;
+			inputen_reset   : in std_logic;
+			regsen_ready    : in std_logic;
+			data_diff       : out std_logic;
+			root            : out std_logic_vector(7 downto 0)
+		);
+	end component;
+	
+	component sqrt_ctrlpath is
+		port (
+			clock			: in std_logic;
+			reset			: in std_logic;
+			diff			: in std_logic;
+			regsen_ready	: out std_logic;
+			inputen_reset	: out std_logic;
+		);
+	end component;	
+	
 end root_package;
 	
