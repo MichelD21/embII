@@ -10,7 +10,6 @@ if { ![file exist work] } {
 
 set sourceFiles {
 	
-	root_package.vhd
 	FFD_rst.vhd
 	FFD_set.vhd
 	Add1Rip.vhd
