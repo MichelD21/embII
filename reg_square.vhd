@@ -1,6 +1,5 @@
 library ieee;
 	use ieee.std_logic_1164.all;
-	use work.root_package.all;
 	
 -- square register, being reseted with value 4 (16 bits)
 entity reg_square is

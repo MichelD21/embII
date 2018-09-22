@@ -1,6 +1,5 @@
 library ieee;
 	use ieee.std_logic_1164.all;
-	use work.root_package.all;
 
 entity FFD_rst is
 	port (
@@ -19,7 +18,8 @@ architecture behavioral of FFD_rst is
 begin
 	FFD_proc	: process(reset, clock)
 	begin
-		if (reset = '1') then
+		-----------
+		if (reset = '1') then		
 			q_s	<= '0';
 		elsif rising_edge(clock) then
 			if (enable = '1') then
@@ -27,9 +27,22 @@ begin
 			else
 				q_s <= q_s;
 			end if;
-		else
-			q_s <= q_s;
+		--else
+		--	q_s <= q_s;
 		end if;
+		-------------		
+		--if enable = '1' then
+		--	if reset = '1' then
+		--		q_s <= '0';
+		--	elsif clock = '1' then
+		--		q_s <= d;
+		--	else
+		--		q_s <= q_s;
+		--	end if;
+		--else
+		--	q_s <= q_s;
+		--end if;
+
 	end process;
 	
 	q <= q_s;

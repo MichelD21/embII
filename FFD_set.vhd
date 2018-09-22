@@ -1,6 +1,5 @@
 library ieee;
 	use ieee.std_logic_1164.all;
-	use work.root_package.all;
 
 entity FFD_set is
 	port (
@@ -19,7 +18,7 @@ architecture behavioral of FFD_set is
 begin
 	FFD_proc	: process(set, clock)
 	begin
-		if (set = '1') then
+		if (set = '1') then		
 			q_s	<= '1';
 		elsif rising_edge(clock) then
 			if (enable = '1') then
@@ -27,8 +26,8 @@ begin
 			else
 				q_s <= q_s;
 			end if;
-		else
-			q_s <= q_s;
+		--else
+		--	q_s <= q_s;
 		end if;
 	end process;
 	

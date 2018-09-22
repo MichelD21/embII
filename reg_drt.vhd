@@ -1,6 +1,5 @@
 library ieee;
 	use ieee.std_logic_1164.all;
-	use work.root_package.all;
 	
 -- drt root register, being reseted with value 2 (8 bits)
 entity reg_drt is

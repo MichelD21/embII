@@ -1,7 +1,5 @@
 library ieee;
 	use ieee.std_logic_1164.all;
-	use work.root_package.all;
-    
     
 entity left_log_shift is
 	port (
