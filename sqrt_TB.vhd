@@ -33,7 +33,7 @@ begin
 	--clock <= not clock after 5 ns; -- 100MHz
 	clk <= not clk after 2.75 ns;
 	--reset_s  <= '1', '0' after 400 ns; 
-	rst_n <= '1', '0' after 50 ns;
+	rst_n <= '1', '0' after 58 ns;
 		
 	DUV: sqrt_top
 		port map	(
