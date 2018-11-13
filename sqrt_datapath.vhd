@@ -66,18 +66,61 @@ begin
             clock	=> clock,
             q		=> drt_reg_q
         );
-    
-    drt_adder: entity work.Adder
-        generic map(
-            ADDER_WIDTH => 8
-        )
+    --------------------------------------------------------------
+    -- 8 bit Ripple-LookAhead incrementer
+    drt_increment: entity work.inc8_la_rip
         port map(
-            input0    => x"01",
-            input1    => drt_reg_q,
-            carry_in  => '0',
-            result    => incremented_drt,	
-            carry_out => open                       -- missing
+            A       => drt_reg_q,
+            S       => incremented_drt,
+            Cout    => open
         );
+        
+    -- 8 bit Ripple incrementer
+    --drt_increment: entity work.inc8_Rip
+    --    port map(
+    --        A       => drt_reg_q,
+    --        S       => incremented_drt,
+    --        Cout    => open
+    --    );
+    
+    -- 16 bit Ripple-LookAhead adder
+    square_adder: entity work.adder16_la_rip
+        port map(
+            A       => shifted_drt, 
+            B       => square_reg_q,
+            Cin     => '1',
+            S       => square_sum_res,
+            Cout    => square_sum_cout
+        );
+        
+    -- OLD
+    ---------------------------------------------------------------
+    -- 16 bit Ripple carry adder
+    --drt_adder: entity work.Adder
+    --    generic map(
+    --        ADDER_WIDTH => 8
+    --   )
+    --    port map(
+    --        input0    => x"01",
+    --        input1    => drt_reg_q,
+    --        carry_in  => '0',
+    --        result    => incremented_drt,	
+    --        carry_out => open                       -- missing
+    --    );
+    
+    -- 16 bit Ripple carry adder
+    --square_adder: entity work.Adder
+    --    generic map(
+    --        ADDER_WIDTH => 16
+    --    )
+    --    port map(
+    --        input0    => shifted_drt,
+    --        input1    => square_reg_q,
+    --        carry_in  => '1',
+    --        result    => square_sum_res,
+    --        carry_out => square_sum_cout
+    --    );
+    --------------------------------------------------------------
     
     shifter: entity work.left_log_shift
         port map(
@@ -85,18 +128,6 @@ begin
             out_16bits  => shifted_drt
         );
         
-    square_adder: entity work.Adder
-        generic map(
-            ADDER_WIDTH => 16
-        )
-        port map(
-            input0    => shifted_drt,
-            input1    => square_reg_q,
-            carry_in  => '1',
-            result    => square_sum_res,
-            carry_out => square_sum_cout
-        );
-    
     comparator: entity work.comp
         port map(
 			A		=> input_reg_q,
