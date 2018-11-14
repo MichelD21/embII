@@ -95,7 +95,7 @@ begin
         
     -- OLD
     ---------------------------------------------------------------
-    -- 16 bit Ripple carry adder
+    -- 8 bit Ripple carry adder
     --drt_adder: entity work.Adder
     --    generic map(
     --        ADDER_WIDTH => 8

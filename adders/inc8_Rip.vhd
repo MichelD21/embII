@@ -3,15 +3,15 @@
 library ieee;
 	use ieee.std_logic_1164.all;
 
-entity inc8_Rip is 
+entity inc8_rip is 
 	port (	
 		A     : in std_logic_vector(7 downto 0);
 		S    : out std_logic_vector(7 downto 0);
         Cout : out std_logic
     );
-end inc8_Rip;
+end inc8_rip;
 
-architecture dataflow of inc8_Rip is
+architecture dataflow of inc8_rip is
 signal cout_ha0 : std_logic;
 signal cout_ha1 : std_logic;
 signal cout_ha2 : std_logic;
