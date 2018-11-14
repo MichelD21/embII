@@ -4,7 +4,8 @@ library ieee;
 entity isolated_inc_LA is
     port(
         clk : in std_logic;
-        reset : in std_logic
+        reset : in std_logic;
+        output : out std_logic_vector(7 downto 0)
     );
     
 end isolated_inc_LA;
@@ -30,4 +31,5 @@ begin
             Cout => open
         );
         
+    output <= reg_q;
 end structural;
