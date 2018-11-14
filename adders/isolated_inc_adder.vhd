@@ -4,7 +4,8 @@ library ieee;
 entity isolated_inc_adder is
     port(
         clk : in std_logic;
-        reset : in std_logic
+        reset : in std_logic;
+        output : out std_logic_vector(7 downto 0)
     );
     
 end isolated_inc_adder;
@@ -35,4 +36,5 @@ begin
             carry_out => open                       -- missing
         );
         
+        output <= reg_q;
 end structural;
