@@ -50,11 +50,10 @@ end structural;
 architecture behavioral of sqrt_top is
     type StateType is (ST_IDLE, ST_OP, ST_READY);
 	signal current_state            : 	StateType;
-        
+    -- registers
     signal root_reg, drt_root_reg   : unsigned(7 downto 0);
     signal input_reg, square_reg    : unsigned(15 downto 0);
-    --
-    signal shifted_drt              : std_logic_vector(15 downto 0);
+    -- control signal
     signal diff                     : std_logic;
 
 begin
