@@ -67,13 +67,14 @@ begin
             q		=> drt_reg_q
         );
     --------------------------------------------------------------
-    -- 8 bit Ripple-LookAhead incrementer
-    drt_increment: entity work.inc8_la_rip
+    -- 8 bit LookAhead incrementer
+    drt_increment: entity work.inc8_la
         port map(
             A       => drt_reg_q,
             S       => incremented_drt,
             Cout    => open
         );
+            
         
     -- 8 bit Ripple incrementer
     --drt_increment: entity work.inc8_Rip
