@@ -36,17 +36,9 @@ begin
             
             case current_state is
                 when ST_IDLE =>
-                    root_reg <= x"00";
-                    drt_root_reg <= x"02";
-                    square_reg <= x"0004";
-                    input_reg <= unsigned(input);
                     current_state <= ST_OP;
                 
                 when ST_OP =>
-                    root_reg <= drt_root_reg;
-                    square_reg <= square_reg + ("0000000" & shift_left(('0' & drt_root_reg),1)) + 1;
-                    drt_root_reg <= drt_root_reg + 1;
-                    
                     if diff = '1' then
                         current_state <= ST_READY;
                     else
