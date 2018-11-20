@@ -24,7 +24,7 @@ begin
             q => reg_q
         );
         
-    inc: entity work.Adder
+    inc: entity work.adder_rip
         generic map(
             ADDER_WIDTH => 8
        )

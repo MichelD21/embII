@@ -1,16 +1,16 @@
 library ieee;
     use ieee.std_logic_1164.all;
 
-entity isolated_inc_LA is
+entity isolated_inc_la is
     port(
         clk : in std_logic;
         reset : in std_logic;
         output : out std_logic_vector(7 downto 0)
     );
     
-end isolated_inc_LA;
+end isolated_inc_la;
 
-architecture structural of isolated_inc_LA is
+architecture structural of isolated_inc_la is
 signal reg_q : std_logic_vector(7 downto 0);
 signal reg_d : std_logic_vector(7 downto 0);
 begin
@@ -24,7 +24,7 @@ begin
             q => reg_q
         );
         
-    inc: entity work.inc8_la_rip
+    inc: entity work.inc8_la
         port map(
             A => reg_q,
             S => reg_d,

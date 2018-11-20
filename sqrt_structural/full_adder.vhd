@@ -1,7 +1,7 @@
 library ieee;
 	use ieee.std_logic_1164.all;
 
-entity Add1Rip is 
+entity full_adder is 
 	port (	
 		input0    : in std_logic;
 		input1    : in std_logic;
@@ -9,9 +9,9 @@ entity Add1Rip is
 		result    : out std_logic;
 		carry_out : out std_logic
 	);
-end Add1Rip;
+end full_adder;
 
-architecture dataflow of Add1Rip is
+architecture dataflow of full_adder is
 
 begin
 

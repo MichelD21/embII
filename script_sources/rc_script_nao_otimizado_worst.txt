@@ -10,8 +10,8 @@ set OPERATING_CONDITIONS PwcV162T125_STD_CELL_7RF
 set period_clk roger ;#clk = 10.00MHz = 100ns (period)
 set clk_uncertainty 0.25 ;# ns (“a guess”)
 set clk_latency 0.35 ;# ns (“a guess”)
-set in_delay 1 ;# ns
-set out_delay 2.958 ;#ns BC1820PU_PM_A (1.518 + 0.032xCL) = (1.518 + 0.032x45 fF)
+set in_delay 0.1 ;# ns
+set out_delay 0.3 ;#ns BC1820PU_PM_A (1.518 + 0.032xCL) = (1.518 + 0.032x45 fF)
 set out_load 0.045 ;#pF (15 fF + 30 fF) = pin A of IO Cell BC1820PU_PM_A (15 fF) + “a guess”
 set slew "146 164 264 252" ;#minimum rise, minimum fall, maximum rise and maximum fall - pin Z of IO Cell BC1820PU_PM_A
 set slew_min_rise 0.146 ;# ns

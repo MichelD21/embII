@@ -66,6 +66,8 @@ begin
             clock	=> clock,
             q		=> drt_reg_q
         );
+        
+    -- NEW
     --------------------------------------------------------------
     -- 8 bit LookAhead incrementer
     drt_increment: entity work.inc8_la
@@ -97,7 +99,7 @@ begin
     -- OLD
     ---------------------------------------------------------------
     -- 8 bit Ripple carry adder
-    --drt_adder: entity work.Adder
+    --drt_increment: entity work.adder_rip
     --    generic map(
     --        ADDER_WIDTH => 8
     --   )
@@ -110,7 +112,7 @@ begin
     --    );
     
     -- 16 bit Ripple carry adder
-    --square_adder: entity work.Adder
+    --square_adder: entity work.adder_rip
     --    generic map(
     --        ADDER_WIDTH => 16
     --    )
@@ -135,15 +137,8 @@ begin
 			B		=> square_sum_res,
 			AltB	=> comp_out
 		);
-    
-    or_1b : entity work.or_1bit
-        port map(
-            inp1    => square_sum_cout,
-            inp2    => comp_out,
-            outp    => or_out
-        );
         
-    data_diff   <= or_out;
+    data_diff   <= square_sum_cout OR comp_out;
     root        <= root_reg_q;
     
 end structural;

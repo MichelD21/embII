@@ -1,7 +1,7 @@
 library ieee;
 	use ieee.std_logic_1164.all;
 
-entity Adder is 
+entity adder_rip is 
 	generic(ADDER_WIDTH : INTEGER := 8);
 	port (
 		input0    : in std_logic_vector(ADDER_WIDTH - 1 downto 0);
@@ -10,11 +10,11 @@ entity Adder is
 		result    : out std_logic_vector(ADDER_WIDTH - 1 downto 0);
 		carry_out : out std_logic
         );
-end Adder;
+end adder_rip;
 
-architecture dataflow of Adder is
+architecture dataflow of adder_rip is
 	
-	component Add1Rip is
+	component full_adder is
 		port (	
 			input0    : in std_logic;
 			input1    : in std_logic;
@@ -31,7 +31,7 @@ begin
 	sig_carry_in(0) <= carry_in;
 
 	adder : for i in 0 to ADDER_WIDTH - 1 generate
-		bit_adder : Add1Rip
+		bit_adder : full_adder
 			port map (
 				input0    => input0(i),
 				input1    => input1(i),
