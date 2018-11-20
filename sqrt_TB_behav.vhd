@@ -7,7 +7,7 @@ library ieee;
 entity sqrt_TB is
 end sqrt_TB;
 
-architecture Structure of sqrt_TB is
+architecture behavioral of sqrt_TB is
 	
 	--signal clock		: std_logic := '0';
 	signal clk		: std_logic := '0';
@@ -17,25 +17,14 @@ architecture Structure of sqrt_TB is
     signal input		: std_logic_vector(15 downto 0) := x"0019"; -- 25 in decimal
 	signal ready		: std_logic;
 	signal root		    : std_logic_vector(7 downto 0);
-	
-	component sqrt_top
-		port (
-			clk			    : in std_logic;
-			reset			: in std_logic;
-			input			: in std_logic_vector(15 downto 0);
-			ready			: out std_logic;
-			root			: out std_logic_vector(7 downto 0)
-		);
-	end component;
-	
-begin
 
+begin
 	--clock <= not clock after 5 ns; -- 100MHz
 	clk <= not clk after 2.75 ns;
 	--reset_s  <= '1', '0' after 400 ns; 
 	rst_n <= '1', '0' after 58 ns;
 		
-	DUV: sqrt_top
+	DUV: entity work.sqrt_top(behavioral)
 		port map	(
 						--clock			=>	clock,
 						--reset			=>	reset_s,
@@ -44,7 +33,7 @@ begin
 						input			=>	input,
 						ready			=>	ready,
 						root			=> 	root
-					);
+        );
 	
 	process
     begin
@@ -53,5 +42,4 @@ begin
         
     end process;
 	
-	
-end Structure;
+end behavioral;
