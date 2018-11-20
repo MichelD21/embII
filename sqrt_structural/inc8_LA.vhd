@@ -15,15 +15,15 @@ architecture dataflow of inc8_la is
 
 begin
       
-    result(0) <= NOT input(0);
-    result(1) <= input(1) XOR (input(0));
-    result(2) <= input(2) XOR (input(0) AND input(1));
-    result(3) <= input(3) XOR (input(0) AND input(1) AND input(2));
-	result(4) <= input(4) XOR (input(0) AND input(1) AND input(2) AND input(3));
-	result(5) <= input(5) XOR (input(0) AND input(1) AND input(2) AND input(3) AND input(4));
-	result(6) <= input(6) XOR (input(0) AND input(1) AND input(2) AND input(3) AND input(4) AND input(5));
-	result(7) <= input(7) XOR (input(0) AND input(1) AND input(2) AND input(3) AND input(4) AND input(5) AND input(6));
+    S(0) <= NOT A(0);
+    S(1) <= A(1) XOR (A(0));
+    S(2) <= A(2) XOR (A(0) AND A(1));
+    S(3) <= A(3) XOR (A(0) AND A(1) AND A(2));
+	S(4) <= A(4) XOR (A(0) AND A(1) AND A(2) AND A(3));
+	S(5) <= A(5) XOR (A(0) AND A(1) AND A(2) AND A(3) AND A(4));
+	S(6) <= A(6) XOR (A(0) AND A(1) AND A(2) AND A(3) AND A(4) AND A(5));
+	S(7) <= A(7) XOR (A(0) AND A(1) AND A(2) AND A(3) AND A(4) AND A(5) AND A(6));
     
-	carry_out <= input(0) AND input(1) AND input(2) AND input(3) AND input(4) AND input(5) AND input(6) AND input(7);
+	Cout <= A(0) AND A(1) AND A(2) AND A(3) AND A(4) AND A(5) AND A(6) AND A(7);
     
 end dataflow;
