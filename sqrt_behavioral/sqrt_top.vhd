@@ -31,46 +31,51 @@ begin
             if reset = '1' then
                 current_state <= ST_IDLE;
             else
-                current_state <= current_state;
-            end if;
-            
-            case current_state is
-                when ST_IDLE =>
-                    current_state <= ST_OP;
-                
-                when ST_OP =>
-                    if diff = '1' then
-                        current_state <= ST_READY;
-                    else
+                case current_state is
+                    when ST_IDLE =>
                         current_state <= ST_OP;
-                    end if;
                     
-                when ST_READY =>
-                    current_state <= ST_READY;
-            end case;
-            
+                    when ST_OP =>
+                        if diff = '1' then
+                            current_state <= ST_READY;
+                        else
+                            current_state <= ST_OP;
+                        end if;
+                        
+                    when ST_READY =>
+                        current_state <= ST_READY;
+                end case;
+
+            end if;
         end if;
     end process;
     
     -- RTL
-    process(clk)
+    process(clk, reset)
     begin
         if rising_edge(clk) then
-            case current_state is
-                when ST_IDLE =>
-                    root_reg <= x"00";
-                    drt_root_reg <= x"02";
-                    square_reg <= x"0004";
-                    input_reg <= unsigned(input);
-                
-                when ST_OP =>
-                    root_reg <= drt_root_reg;
-                    square_reg <= square_reg + ("0000000" & shift_left(('0' & drt_root_reg),1)) + 1;
-                    drt_root_reg <= drt_root_reg + 1;
+            if reset = '1' then
+                root_reg <= x"00";
+                drt_root_reg <= x"02";
+                square_reg <= x"0004";
+                input_reg <= unsigned(input);
+            else
+                case current_state is
+                    when ST_IDLE =>
+                        root_reg <= x"00";
+                        drt_root_reg <= x"02";
+                        square_reg <= x"0004";
+                        input_reg <= unsigned(input);
                     
-                when others =>
-                    null;
-            end case;
+                    when ST_OP =>
+                        root_reg <= drt_root_reg;
+                        square_reg <= square_reg + ("0000000" & shift_left(('0' & drt_root_reg),1)) + 1;
+                        drt_root_reg <= drt_root_reg + 1;
+                        
+                    when others =>
+                        null;
+                end case;
+            end if;
         end if;
     end process;
     
