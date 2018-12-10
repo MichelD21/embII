@@ -4,28 +4,10 @@ library ieee;
 	
 entity sorter is
 	port(
-            -- A 
-            A_i0		: in std_logic_vector(15 downto 0);
-            A_i1		: in std_logic_vector(15 downto 0);
-            A_i2		: in std_logic_vector(15 downto 0);
-            A_i3		: in std_logic_vector(15 downto 0);
-            A_i4		: in std_logic_vector(15 downto 0);
-            A_i5		: in std_logic_vector(15 downto 0);
-            A_i6		: in std_logic_vector(15 downto 0);
-            A_i7		: in std_logic_vector(15 downto 0);
-            A_i8		: in std_logic_vector(15 downto 0);
-            A_i9		: in std_logic_vector(15 downto 0);
+            -- A
+			A_i			: in std_logic_vector(159 downto 0);
 			-- G
-			G_o0		: out std_logic_vector(15 downto 0);
-            G_o1		: out std_logic_vector(15 downto 0);
-            G_o2		: out std_logic_vector(15 downto 0);
-            G_o3		: out std_logic_vector(15 downto 0);
-            G_o4		: out std_logic_vector(15 downto 0);
-            G_o5		: out std_logic_vector(15 downto 0);
-            G_o6		: out std_logic_vector(15 downto 0);
-            G_o7		: out std_logic_vector(15 downto 0);
-            G_o8		: out std_logic_vector(15 downto 0);
-            G_o9		: out std_logic_vector(15 downto 0);
+			G_o			: out std_logic_vector(159 downto 0);
             
 			rdy_o	: out std_logic;
             rst		: in std_logic;
@@ -34,7 +16,8 @@ entity sorter is
 end sorter;
 
 architecture structural of sorter is
-	
+
+signal A_s : input_type;
 signal B_s : input_type;
 signal C_s : input_type;
 signal D_s : input_type;
@@ -129,17 +112,28 @@ begin
 			AltB	=> AltB(4),
 			AeqB	=> AeqB(4)
 			);
+			
+A_s(0)			<= A_i(15 downto 0);
+A_s(1)			<= A_i(31 downto 16);
+A_s(2)			<= A_i(47 downto 32);
+A_s(3)			<= A_i(63 downto 48);
+A_s(4)			<= A_i(79 downto 64);
+A_s(5)			<= A_i(95 downto 80);
+A_s(6)			<= A_i(111 downto 96);
+A_s(7)			<= A_i(127 downto 112);
+A_s(8)			<= A_i(143 downto 128);
+A_s(9)			<= A_i(159 downto 144);
 
-B_s(0)			<= A_i0 when rst_s = '1' else F_s(0);
-B_s(1)			<= A_i1 when rst_s = '1' else F_s(1);
-B_s(2)			<= A_i2 when rst_s = '1' else F_s(2);
-B_s(3)			<= A_i3 when rst_s = '1' else F_s(3);
-B_s(4)			<= A_i4 when rst_s = '1' else F_s(4);
-B_s(5)			<= A_i5 when rst_s = '1' else F_s(5);
-B_s(6)			<= A_i6 when rst_s = '1' else F_s(6);
-B_s(7)			<= A_i7 when rst_s = '1' else F_s(7);
-B_s(8)			<= A_i8 when rst_s = '1' else F_s(8);
-B_s(9)			<= A_i9 when rst_s = '1' else F_s(9);
+B_s(0)			<= A_s(0) when rst_s = '1' else F_s(0);
+B_s(1)			<= A_s(1) when rst_s = '1' else F_s(1);
+B_s(2)			<= A_s(2) when rst_s = '1' else F_s(2);
+B_s(3)			<= A_s(3) when rst_s = '1' else F_s(3);
+B_s(4)			<= A_s(4) when rst_s = '1' else F_s(4);
+B_s(5)			<= A_s(5) when rst_s = '1' else F_s(5);
+B_s(6)			<= A_s(6) when rst_s = '1' else F_s(6);
+B_s(7)			<= A_s(7) when rst_s = '1' else F_s(7);
+B_s(8)			<= A_s(8) when rst_s = '1' else F_s(8);
+B_s(9)			<= A_s(9) when rst_s = '1' else F_s(9);
 
 D_s(0)		<= C_s(0);
 D_s(1)		<= C_s(9) when even_odd = '0' else C_s(1);
@@ -174,6 +168,17 @@ F_s(7)		<= E_s(7) when ( not_AltB(3) and even_odd and not_AeqB(3) ) = '0' else C
 F_s(8)		<= E_s(8) when ( not_AltB(4) and even_odd and not_AeqB(4) ) = '0' else C_s(9);
 F_s(9)		<= E_s(9) when ( not_AltB(4) and even_odd and not_AeqB(4) ) = '0' else C_s(8);
 
+G_o(15 downto 0)		<= F_s(0);
+G_o(31 downto 16)		<= F_s(1);
+G_o(47 downto 32)		<= F_s(2);
+G_o(63 downto 48)		<= F_s(3);
+G_o(79 downto 64)		<= F_s(4);
+G_o(95 downto 80)		<= F_s(5);
+G_o(111 downto 96)		<= F_s(6);
+G_o(127 downto 112)		<= F_s(7);
+G_o(143 downto 128)		<= F_s(8);
+G_o(159 downto 144)		<= F_s(9);
+
 not_AeqB <= not AeqB;
 not_AltB <= not AltB;
 not_rdy <= not rdy_s;
@@ -183,15 +188,5 @@ swap_rdy <= not ( AltB(0) or (AltB(1) and odd_even) or (AltB(2) and odd_even) or
 rdy_s <= step_rdy and swap_rdy;
 
 rdy_o <= rdy_s;
-G_o0	<= F_s(0);
-G_o1	<= F_s(1);
-G_o2	<= F_s(2);
-G_o3	<= F_s(3);
-G_o4	<= F_s(4);
-G_o5	<= F_s(5);
-G_o6	<= F_s(6);
-G_o7	<= F_s(7);
-G_o8	<= F_s(8);
-G_o9	<= F_s(9);
 
 end structural;
