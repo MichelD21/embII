@@ -3,12 +3,33 @@ library ieee;
 	use work.sorter_pkg.all;
 	
 entity sorter is
-	port (
-			A_i		: in input_type;
-			rst		: in std_logic;
-			clk		: in std_logic;
-			G_o		: out input_type;
-			rdy_o	: out std_logic
+	port(
+            -- A 
+            A_i0		: in std_logic_vector(15 downto 0);
+            A_i1		: in std_logic_vector(15 downto 0);
+            A_i2		: in std_logic_vector(15 downto 0);
+            A_i3		: in std_logic_vector(15 downto 0);
+            A_i4		: in std_logic_vector(15 downto 0);
+            A_i5		: in std_logic_vector(15 downto 0);
+            A_i6		: in std_logic_vector(15 downto 0);
+            A_i7		: in std_logic_vector(15 downto 0);
+            A_i8		: in std_logic_vector(15 downto 0);
+            A_i9		: in std_logic_vector(15 downto 0);
+			-- G
+			G_o0		: out std_logic_vector(15 downto 0);
+            G_o1		: out std_logic_vector(15 downto 0);
+            G_o2		: out std_logic_vector(15 downto 0);
+            G_o3		: out std_logic_vector(15 downto 0);
+            G_o4		: out std_logic_vector(15 downto 0);
+            G_o5		: out std_logic_vector(15 downto 0);
+            G_o6		: out std_logic_vector(15 downto 0);
+            G_o7		: out std_logic_vector(15 downto 0);
+            G_o8		: out std_logic_vector(15 downto 0);
+            G_o9		: out std_logic_vector(15 downto 0);
+            
+			rdy_o	: out std_logic;
+            rst		: in std_logic;
+			clk		: in std_logic
 		);
 end sorter;
 
@@ -108,8 +129,17 @@ begin
 			AltB	=> AltB(4),
 			AeqB	=> AeqB(4)
 			);
-    
-B_s			<= A_i when rst_s = '1' else F_s;
+
+B_s(0)			<= A_i0 when rst_s = '1' else F_s(0);
+B_s(1)			<= A_i1 when rst_s = '1' else F_s(1);
+B_s(2)			<= A_i2 when rst_s = '1' else F_s(2);
+B_s(3)			<= A_i3 when rst_s = '1' else F_s(3);
+B_s(4)			<= A_i4 when rst_s = '1' else F_s(4);
+B_s(5)			<= A_i5 when rst_s = '1' else F_s(5);
+B_s(6)			<= A_i6 when rst_s = '1' else F_s(6);
+B_s(7)			<= A_i7 when rst_s = '1' else F_s(7);
+B_s(8)			<= A_i8 when rst_s = '1' else F_s(8);
+B_s(9)			<= A_i9 when rst_s = '1' else F_s(9);
 
 D_s(0)		<= C_s(0);
 D_s(1)		<= C_s(9) when even_odd = '0' else C_s(1);
@@ -153,6 +183,15 @@ swap_rdy <= not ( AltB(0) or (AltB(1) and odd_even) or (AltB(2) and odd_even) or
 rdy_s <= step_rdy and swap_rdy;
 
 rdy_o <= rdy_s;
-G_o	<= F_s;
+G_o0	<= F_s(0);
+G_o1	<= F_s(1);
+G_o2	<= F_s(2);
+G_o3	<= F_s(3);
+G_o4	<= F_s(4);
+G_o5	<= F_s(5);
+G_o6	<= F_s(6);
+G_o7	<= F_s(7);
+G_o8	<= F_s(8);
+G_o9	<= F_s(9);
 
 end structural;
